@@ -71,8 +71,7 @@ if (isDev) {
       app: path.join(__dirname, '../src/client/client.entry.js')
     },
     output: {
-      filename: '[name].[chunkhash:8].js',
-      publicPath: '/public/'
+      filename: '[name].[chunkhash:8].js'
     },
     module: {
       rules: [
