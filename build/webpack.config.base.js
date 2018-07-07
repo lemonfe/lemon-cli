@@ -26,12 +26,6 @@ const config = {
           {
             loader: 'vue-loader',
             options: createVueLoaderOptions(isDev)
-          },
-          {
-            loader: 'iview-loader',
-            options: {
-              prefix: false
-            }
           }
         ]
       },
