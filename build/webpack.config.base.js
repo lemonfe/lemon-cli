@@ -57,4 +57,11 @@ const config = {
   }
 }
 
+config.resolve = {
+  alias: {
+    '@': path.join(__dirname, '../src/'),
+    'model': path.join(__dirname, '../src/client/model/server-model.js')
+  }
+}
+
 module.exports = config

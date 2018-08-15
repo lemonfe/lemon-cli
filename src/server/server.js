@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const send = require('koa-send')
+const koaBody = require('koa-body')
 const path = require('path')
 
 const app = new Koa()
@@ -7,6 +8,23 @@ const app = new Koa()
 const staticRouter = require('./routers/static.js')
 
 const isDev = process.env.NODE_ENV === 'development'
+
+// 记录所有请求以及出现的错误信息
+app.use(async (ctx, next) => {
+  try {
+    console.log(`request with path ${ctx.path}`)
+    await next()
+  } catch (err) {
+    console.log(err)
+    ctx.status = 500
+    if (isDev) {
+      ctx.body = err.message
+    } else {
+      ctx.body = 'please try again later'
+    }
+  }
+})
+app.use(koaBody())
 
 // 记录所有请求以及出现的错误信息
 app.use(async (ctx, next) => {

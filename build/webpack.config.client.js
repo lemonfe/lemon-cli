@@ -34,6 +34,11 @@ let config
 
 if (isDev) {
   config = merge(baseConfig, {
+    output: {
+      filename: 'bundle.[hash:8].js',
+      path: path.join(__dirname, '../public'),
+      publicPath: 'http://localhost:8000/public/'
+    },
     module: {
       rules: [
         {
@@ -104,7 +109,8 @@ if (isDev) {
     plugins: [
       ...defaultPlugins,
       new ExtractTextPlugin({
-        filename: 'styles.[hash:8].css'
+        filename: 'styles.[hash:8].css',
+        allChunks: true
       }
       )
     ]
